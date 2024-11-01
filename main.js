@@ -1,37 +1,34 @@
 fetch('https://www.course-api.com/javascript-store-products')
-.then(response => response.json()) 
+.then(response => {
+if (!response.ok) {
+throw new Error('Network response was not successful');}
+return response.json();})
 // Code set to fetch the product data from API.
 // Response was then converted to json.
 .then(data => {
 console.log(data);
 // Code meant to log data.
 
-// Get the container where products will be displayed
-const productContainer = document.getElementById('product-container');
-    
-
-
-displayProducts(data); // Call function to display products
-})
+let productContainer = document.getElementById('product-container');
+// Code set to find items by id in product container.
+displayProducts(data);})
+// Code meant to display the products.
 .catch(error => {
-console.error('Error loading products:', error); // Log any errors
-document.getElementById('product-container').innerText = 'Failed to load products. Please try again later.'; // Show error message
-});
-
+console.error('Error loading products:', error); 
+// Code meant to catch any errors found and log them. 
+document.getElementById('product-container').innerText = 'Failed to load products. Please try again later.';});
+// Error message set to be displayed when errors are found.
 // Function to display the products
 function displayProducts(data) {
 const productContainer = document.getElementById('product-container'); // Get the container
-
-// Loop through each product and display its details
+// Function set to display the products
 data.forEach(product => {
-const productDiv = document.createElement('div'); // Create a div for each product
+const productDiv = document.createElement('div'); 
 productDiv.innerHTML = `
 <h2>${product.name}</h2>
 <p>Company: ${product.company}</p>
 <p>Price: $${product.price}</p>
 <img src="${product.image}" alt="${product.name}" />`;
-// Add product details to the div
-productContainer.appendChild(productDiv); // Add the product div to the container
-});
-}
-
+// Code created to loop through all the products and display product details. 
+productContainer.appendChild(productDiv);});}
+// Code created to display the products on the webpage. 
