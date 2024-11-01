@@ -13,12 +13,16 @@ let productContainer = document.getElementById('product-container');
 // Code set to find items by id in product container.
 displayProducts(data);})
 // Code meant to display the products.
+
 .catch(error => {
 console.error('Error loading products:', error); 
 // Code meant to catch any errors found and log them. 
-document.getElementById('product-container').innerText = 'Failed to load products. Please try again later.';});
+const errorMessage = document.getElementById('error-message');
+errorMessage.innerText = 'Failed to load products. Please try again later.';
+errorMessage.style.display = 'block';});
+// Code meant to display error message. 
 // Error message set to be displayed when errors are found.
-// Function to display the products
+
 function displayProducts(data) {
 const productContainer = document.getElementById('product-container'); // Get the container
 // Function set to display the products
