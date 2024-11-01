@@ -24,15 +24,19 @@ errorMessage.style.display = 'block';});
 // Error message set to be displayed when errors are found.
 
 function displayProducts(data) {
-const productContainer = document.getElementById('product-container'); // Get the container
+const productContainer = document.getElementById('product-container'); 
 // Function set to display the products
-data.forEach(product => {
+data.forEach(item => {
+const { name, price, company, image } = item.fields; 
 const productDiv = document.createElement('div'); 
+        
+const imageUrl = image[0].url; 
+// Code meant to access imagine URL.
 productDiv.innerHTML = `
-<h2>${product.name}</h2>
-<p>Company: ${product.company}</p>
-<p>Price: $${product.price}</p>
-<img src="${product.image}" alt="${product.name}" />`;
+<img src="${imageUrl}" alt="${name}" />
+<h2>${name}</h2>
+<p>Company: ${company}</p>
+<p>Price: $${(price / 100).toFixed(2)}</p>`;
 // Code created to loop through all the products and display product details. 
 productContainer.appendChild(productDiv);});}
-// Code created to display the products on the webpage. 
+// Code created to display the products on the webpage.
